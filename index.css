@@ -1,7 +1,91 @@
 body {
   text-align: center;
+  margin: 0;  
+  font-family: Sans-serif;
+  font-weight: bold;
 }
 
+img {
+  border: 100%;
+  width: 100%;
+  height: auto;
+}
+h1{
+  text-align: center;
+  border: 10px;
+  padding: 0px 10px;
+}
+pre{
+  text-align: left;
+  font-weight: normal;
+  width:50%;
+  font-size:20px;
+
+}
 div {
   font-size: 24px;
+  
+}
+
+.names {
+  color: gray;
+}
+
+.group {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 64px;
+  color: white;
+}
+.group1{
+
+  font-size: 64px;
+  color: white;
+
+}
+
+.members {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Sans-serif;
+  font-size: 32px;
+  font-weight: italic;
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+
+.tab1 {
+  tab-size: 2;
 }

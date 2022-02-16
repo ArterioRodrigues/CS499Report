@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <ul>
+        <li class="active"><a href="index.html">Home</a></li>
+        <li class= "active"><a href="blog1.html">Blog</a></li>
+    </ul>
+    <div class = "top">
+        <img src="" alt="">
+        <h1 class="">Blog Post: Tail-tolerant</h1>
+        <div>Introduction</div>
+        <pre class="tab1">
+                When we create programs we want them to be responsive to users’ 
+            actions this makes their experience more fluid and natural. Due to improvement 
+            today with internet connectivity and a full warehouse-scale computing system, 
+            this is possible today. But we still can encounter problems with latency which 
+            make the user experience worse. There are various software 
+            techniques that are vital to building a responsive large-scale web service. 
+                
+                The problem of latency is very challenging because it is hard to keep latency constant 
+            for example you can have high latency episodes. For large online services, we need to 
+            create a predictably responsive this referred to as “latency tail-tolerant”.  
+            Tail-tolerant works by taking advantage of resources already deployed to achieve 
+            fault-tolerance, resulting in low additional overhead. 
+                
+                To fix the problem the first we need to know is why latency variability 
+            exists. Variability exists because of a shared resource, daemons, global resource sharing, 
+            maintenance activities, queueing, power limits, garbage collection, energy management. 
+            We will discuss 2 ways how we can deal with variability. The first is short-term solutions 
+            which refer to breaking a requested service into smaller problems and having multiple machines 
+            complete the request. The next is the long-term solutions which refer to having many partitions 
+            than machines in a system that are assigned data which each partition is responsible for. 
+            This also allows for partitions to offload jobs to other partitions if they become overloaded.
+                
+                Our blog will go more indepth into these two solutions to latency tail-tolerant. 
+            Most of these solutions are used by several large companies like Google to make their 
+            software fluid and user friendly. An example of which is the famous google search engine.
+
+        </pre>
+        <div>Short Term Solutions</div>
+        <pre>
+                One solution to the latency problem is by breaking the requested service into smaller 
+            problems and having multiple machines complete those smaller requests. For example, a 
+            request that takes 100 seconds to complete could be broken down into 100 parts and be 
+            run on 100 machines simultaneously. This would reduce completion time from 100 seconds 
+            to one second, but there are drawbacks with this. It would increase the chance for a 
+            machine to stall or delay and delay the whole request. The more machines there are, the 
+            higher the chance, but it would still be an improvement in time over running the request 
+            on one machine.
+
+                Some solutions are smaller and are more software and scheduling based. For example, 
+            a solution is to differentiate between service classes and higher-level requests so 
+            the higher level queues run more quickly instead of spending time to run background 
+            older requests. Another small software solution is to time background services on 
+            every machine to run at the same time so there are no unexpected delays while running 
+            a high priority request.
+
+	            Another popular solution is to run the same request on multiple machines and take 
+            the result from the first machine that completes the request. This is called hedged 
+            requests. Once the first result is sent, the rest of the machines cancel their requests 
+            and move on to their next task. Another way to do this is to send the same request to 
+            different machines when the original request is past the 95’th percentile latency. 
+            Hedged requests sometimes run the same request multiple times, making redundancy a factor. 
+
+                Tied requests build upon hedged requests by having the machines communicate status 
+            requests to each other. Once one machine starts a request, it tells the other machines 
+            and they immediately take the request out of the queue. There is a chance that different 
+            machines are running the same request at the same time when the message is still being delivered. 
+            One solution to this problem is having other machines be delayed about twice the amount of time it 
+            takes to send a message before it starts handling the request. On average, tied requests will 
+            reduce latency 16%  to 38% from no hedging. A different method from hedged and tied requests is to 
+            check out all the queues and send the request to the machine with the least amount of queued 
+            work. It is a possible solution but it is still worse than sending the same work to multiple 
+            machines. The reasons are that load/work times can change between probing and sending the 
+            request, estimating request time is not very reliable, and many requests can all load onto 
+            the same machine, creating a backlog. 
+        </pre>
+        <div>Long Term Solutions</div>
+        <pre>
+                When it comes to long term solutions to reduce latency variability caused by data load 
+            imbalance and service-time variations, there are micro partitioning, selective replication 
+            and latency induced probation. Many systems already partition their data in a way that each 
+            partition in a machine has equal cost to partitions in other machines, with the goal of dividing 
+            data to make it more manageable and improve query processing performance. In practice such 
+            a method is insufficient to handle latency variability because the performance of each individual 
+            machine is not consistent and a single data assignment outlier can induce a load imbalance on 
+            one partition. Instead of one partition to one machine, companies like Google use micro partitioning 
+            where there are much more partitions than machines in a system. They then utilize dynamic 
+            data assignment to manage responsibility of each partition and to enforce load balance. 
+            If a machine is close to being overloaded, then some of their work can be assigned to a 
+            partition in an idle machine to prevent the overload and to maintain load balance. 
+            Additionally, micro partitions also have a fail-safe method where if a machine in the system 
+            fails, then other machines in the system can pick up their work to stop the loss of data. 
+            Selective replication improves on the idea of micro partitioning by being able to predict 
+            certain items that can cause load imbalances. Selective replication creates copies of these 
+            items and then spreads them around to other machines. This leads to multiple machines being 
+            able to service the item thus sharing the data load without having to move micro partitions 
+            around the system. The other solution, latency induced probation, works similarly to micro partitioning 
+            in that it monitors the performance of each system to see if it’s overloaded or not. 
+            Instead of reassigning work from overloaded machines to less active machines, latency induced 
+            probation excludes the overloaded machine from the system while maintaining a connection with 
+            it. The system collects statistics on the excluded machine, waiting until their latency 
+            problem dissipates so it can be included into the system again. While it might seem counterproductive 
+            to kick out machines during data work, it actually improves latency during periods of high loads. 
+            However, despite these short term and long term solution all we can do is minimize latency variability.
+        </pre>
+        <div>Conclusion</div>
+        <pre>
+                It is evident that as complexity and data demands increase, the need for minimizing the 
+            effects of latency increases concurrently . An apt analogy for the mechanism is the butterfly effect. 
+            This is described by abutterfly flapping its wings across the earth and causing a tornado in 
+            the Midwest over a certain time frame. Small hiccups can  increase latency significantly, similar 
+            to the butterfly effect over the time dimension. In a similar vein, hiccups in modern data systems 
+            can end up accruing cost in the form of higher latency, primarily due to the nature of resource 
+            allocation and demand within modern day systems. Further there is a dilemma in which it is not 
+            possible to practically eliminate it completely, there are currently only ways of minimizing it. 
+
+                Some common approaches to minimization would be global resource sharing by different machines, 
+            maintenance techniques such as data reconstruction, multilayer queuing and throttling of 
+            individual machines. It seems that focusing on cost benefit will allow for higher levels of service 
+            as well. The future of reduced latency will likely revolve on two aspects, first the hardware advances 
+            themselves. Hardware will likely be much more efficient on a micro level, as well as fitting 
+            within larger scaling systems. Data centers and data networks may find clever ways of making 
+            optimizations that reduce the cost of hiccups, or outright circumvent them with newer methodologies. 
+            Next generation technologies will also focus on the large scale tail end solutions, but the root of the 
+            problems will always stem from the accumulation of hiccups and the butterfly effect from these 
+            hiccups. The goal will be to simplify systems as much as possible. 
+
+                A rather interesting point is that nature and biology has done something similar, our bodies for 
+            example are very efficient on both the micro layer and macro layer. Hopefully we can do this 
+            with our computing systems as well. 
+
+        </pre>
+    </div>
+</body>
+</html>
