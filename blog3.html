@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/index.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog 3</title>
+</head>
+<body>
+    
+    <ul>
+        <li class="active"><a href="index.html">Home</a></li>
+        <li class= "active"><a href="blog1.html">Blog 1</a></li>
+        <li class= "active"><a href="blog2.html">Blog 2</a></li>
+        <li class= "active"><a href="blog3.html">Blog 3</a></li>
+    </ul>
+    <div class = "top">
+        <img src="" alt="">
+        <h1 class="">Blog Post: Intro To RS</h1>
+        <div>Christopher Wu- Introduction and Platform Overview</div>
+        <pre class="tab1">
+                Since its creation nearly 50 years ago, the C programming language has been widely used for its portability, 
+            efficiency, and relative ease of use compared to assembly languages. While developers have a lot of freedom while using 
+            C, it contradicts modern programming practices, such as strong typing, encapsulation, or genericity. It also can cause 
+            cybersecurity issues.  One of the main problems is the analysis of code after the code is written or compiled. 
+            This leads to code analysis being hard to implement for C programs. It is very easy to write code that generates undefined 
+            behavior in C, such as illegal memory access, silently corrupting memory, and reading uninitialized variables. Another 
+            problem is that C allows direct access through casts and pointer arithmetic, to the sequence of bytes that contain the 
+            concrete representation of an object in memory. This leads to more of a chance for memory corruption and unintended behavior. 
+                
+                To address some of these problems, Frama-C was created. It is a code analysis platform that verifies the content of C code 
+            and makes sure everything runs the way it was intended to. It acknowledges that there is no single solution and technique to 
+            access all the properties of C code. Many techniques are combined and used in tandem to cover all the needs for a software engineer. 
+            Frama-C encourages uses of third-party plugins and includes open source releases so other developers can create and use their own 
+            plugins. Frama-C is designed to be used by  software engineers who are not necessarily experts in formal methods. It automates as 
+            much of the process as possible, and assesses the performances of the platform on real-world case studies. 
+            
+                Frama-C allows users to analyze a C program to better understand it, simplify it, and assess different properties about it. 
+            Program properties can be explicitly expressed as annotations written in the formal specification language ACSL. They can be 
+            validated by partial, dynamic verification or formally verified by rigorous, static verification.  It does this by building a framework 
+            of different tools, provided as plug-ins, that work together. Frama-C 21-Scandium, the latest release of Frama-C, contains 27 plug-ins. 
+            All the plugs-ins do various things including verification, providing specific functional properties, helping to understand the code, and 
+            helping expand other plugins. The developers acknowledge, though, that there is no one perfect plugin to solve a problem for all programs. 
+            Some tools and techniques are more efficient for certain programs or properties than others. Frama-C encourages collaborations between 
+            plugins to strengthen already existing techniques, and the collaboration happens in 2 ways: sequential and parallel. Sequential collaboration 
+            is  using the results of one analyzer as the input of another. One analyzer also can generate annotated C code that can be used by another 
+            analyzer. Parallel collaboration involves several analyzers to verify program properties, with each analyzer verifying a subset of 
+            properties. 
+            
+        </pre>
+        <div>Terry Phung- Core Platform Analyses</div>
+        <pre>
+                The basis of Frama-C’s core platform analyses is based on four plugins: Eva, WP, E-ACSL and PathCrawler. Eva provides a 
+            customizable and automatic analysis of C programs that searches for undefined behaviors. Undefined behaviors are things 
+            like invalid memory accesses, signed integer overflows and invalid pointer comparisons. Through a technique called abstract 
+            interpretation, Eva can approximate on a line by line basis if a line of code is a potential undefined behavior. The plugin then 
+            outputs a list of potential undefined behaviors or as the plugin calls it, an alarm. While generally robust, Eva can output false 
+            alarms so each alarm must be checked if it is an actual bug or a false alarm. The WP plugin allows the use of deductive verification, 
+            a method to prove that functional properties of a program holds up in all cases. WP performs the deductive verification on a 
+            function by function basis, proving them separately. How it works is that WP compiles the C code and then converts it into 
+            mathematical theorems. The C code turned theorems are then passed into automated theorem provers or satisfiability modulo theories(SMT) 
+            solvers to prove if the mathematical theorem is valid or not. The E-ACSL plugin is dedicated to runtime assertion checking, the process 
+            of verifying the program at runtime. It verifies the program by inserting E-ACSL annotations into the C code program which then 
+            checks the annotations during runtime. If the annotation check passes, then the program continues running normally without errors. 
+            If the annotation check fails, then the program stops and gives a report to the user the reason for the annotation check failure. The 
+            last plugin analysis that Frama C uses is PathCrawler. PathCrawler generates test cases for a C program whose functions are tested on a 
+            one by one basis. The purpose of this is to measure the code coverage of a C program and to explore the results that come from those test 
+            cases.
+            
+        </pre>
+        <div> ACSL Specification Language - Karnendra Verma</div>
+        <pre>
+           
+                The C programming language has been used for the better part of fifty years,the design choices of the past do not translate 
+            directly to the modern paradigms and requirements of the modern world. Given the rise of cyberattacks and the need for 
+            even small and medium sized companies to have some degree of cyber/data security, it is evident that robust analytic tools 
+            are a practical step for the future.  Some of the issues with legacy C code were the use of NULL character terminating strings, 
+            the use of uninhibited pointers, and division by zero flaws. Frama-C has implemented  checks to ensure that run-time errors 
+            are minimized, within the context of other plugins. Assertions can be used to check whether a pointer (p*) is greater than 0. 
+            This would take care of one common case of read/write security flaws. Unfortunately, this does not mean that the program will 
+            behave as intended, and therefore the use of a function contract becomes practical. What this means is that we add some 
+            additional precondition constraints to our code to guarantee a certain postcondition outcome. A cooking analogy would be 
+            having our lunch meats and veggies portioned and separated (precondition) in order to make the actual hero easier and quicker 
+            to assemble (postcondition). One of the ways this is accomplished is by using ints and other real types unbounded. This helps 
+            mitigate the potential overflow errors from occurring. This is very important due to the nature of architecture-specific security 
+            flaws. For example, NSO, developed a spyware that was used in political assassinations, and it worked with buffer overflows of 
+            temporary memory. C and C++ are used widely in embedded systems and architecture and are prone to buffer overflows. 
+            
+        </pre>
+        <div>1.7 and 1.8 Karnendra Verma</div>
+        <pre>
+                
+
+        </pre>
+    </div>
+</body>
+</html>
