@@ -89,9 +89,39 @@
             temporary memory. C and C++ are used widely in embedded systems and architecture and are prone to buffer overflows. 
             
         </pre>
-        <div>Arterio Rodrigues</div>
+        <div>Tell Frama-C What You want to Verify- Arterio Rodrigues</div>
         <pre>
-                
+            
+            Frama-C offer a lot of awesome plugs-ins, for verifications sequences of events we have Aorai and café. For verifying 
+            relational properties there is RPP. There is much more below are all the article talked about and what they do.
+
+            Verify sequences of events: Aorai and CaFE.
+                It is often necessity to verify that a set of events during a program execution follows a particular order. Two 
+            Frama-C plug-ins used for this are Aorai, which simply adds C variables representing the states, together with functions and 
+            ACSL annotations ensuring we end up in an accepting state. CaFE, is a more recent plug-in that is based on CaRet, it can 
+            handle additional properties, like nested function calls.
+
+            Verify relational properties: RPP. 
+	            RPP is a plug-in that offers an extension of ACSL to formally specify relational properties. RPP uses a form of 
+            self-composition to generate a wrapper function with an ACSL contract, such that its proof implies the relational property 
+            for the original code. An important benefit of RPP’s transformation is that it allows the use of proven relational prope3rty 
+            as a hypothesis in subsequent proofs. 
+
+            Enforce global properties: MetACSL.
+	            Often it the case that one wants to enforce a given property across the whole program. MetACSL plug-in solves this problem 
+            by automatically generating these ACSL annotations from a single, higher-level property expressed in a small DSL, extending 
+            ACSL to indicate the contexts in which the property must hold. 
+
+            Prove concurrent programs: Conc2Seq.
+	            Conc2Seq is an experimental plug-in for deductive verification of concurrent programs. Similarly, to the CSec approach, 
+            it performs a dedicated code transformation of a given concurrent program into a sequential one. It does this by interleaving the 
+            executions of indivisible blocks in various ways. Conc2Seq also automatically transform specifications of the initial program into 
+            specifications for the resulting program.
+
+            Specify test objectives: LAnnotate.
+	            The LAnnotate plug-in inserts the corresponding labels and other plug-ins that can be used to reason about them. For example, 
+            PathCrawler supports the label-coverage criterion and offers an efficient test generation for labels.
+  
 
         </pre>
     </div>
