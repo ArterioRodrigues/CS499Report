@@ -23,55 +23,63 @@
         <div>Section 1: Introduction-Arterio </div>
         <pre class="tab1">
                   They were two approaches to storage reclamation tracing and reference counting. 
-                The have been many great leaps since 1960 in these two approaches for tracing some major advancements are iterative copying collection, generational collection, constant-space training, etc. 
-                For reference counting, some advancements are incremental freeing, deferred reference counting, cycle collection, compile-time removal, etc. 
-                All these advances have been refinements on the two fundamental approaches tracing and reference counting. Both approaches were generally looked at as different methods but after implementing of both striking similarities between the two approaches were found. 
-                This led to the belief that the two algorithms share “deep structure”. In this paper we will discuss how tracing and reference counting are algorithmic duals of each other.
-                Tracing can be taught of as operating upon live objects or “matter” and reference counting operates upon dead objects or “anti-matter”.
-                In other words, ever operation done by tracing there is “anti-operation” done by reference counting. First, we will discuss qualitative comparison of tracing and reference counting and then show that two algorithms are the very similar. 
-                Then show that high-performance collectors are hybrids that combine tracing and reference counting. 
+                The have been many great leaps since 1960 in these two approaches for tracing some major advancements are iterative copying collection, 
+		generational collection, constant-space training, etc. For reference counting, some advancements are incremental freeing, deferred reference
+		counting, cycle collection, compile-time removal, etc. All these advances have been refinements on the two fundamental approaches 
+		tracing and reference counting. Both approaches were generally looked at as different methods but after implementing of both striking 
+		similarities between the two approaches were found. This led to the belief that the two algorithms share “deep structure”. 
+		In this paper we will discuss how tracing and reference counting are algorithmic duals of each other.Tracing can be taught of as operating 
+		upon live objects or “matter” and reference counting operates upon dead objects or “anti-matter”.In other words, ever operation done by tracing 
+		there is “anti-operation” done by reference counting. First, we will discuss qualitative comparison of tracing and reference counting and then 
+		show that two algorithms are the very similar. Then show that high-performance collectors are hybrids that combine tracing and reference counting. 
                 Then the problem of cycle collection and collectors with arbitrary numbers of separate leaps.
 
             
         </pre>
         <div>Section 2: Qualitative  Comparison-Terry </div>
         <pre>
-              There are several differences between tracing and reference counting collectors but as further optimization is performed on these collectors, the algorithmic performance of the collectors start to become very similar. 
-            To start, reference counting is incremental because it updates counts on each pointer write. Tracing in comparison counts by scanning the entire heap of pointer writes in one go. 
-            Reference counting being incremental means that reference counting collectors have very short internal pause time as it constantly updates on each pointer write which makes it good for fast real time applications. 
-            Tracing collectors in turn takes in a lot of data which results in delayed collection and long pause time but it is also able to output large amounts of data too. 
-            Additionally, tracing counting collectors ignore pointer mutations while reference counting collectors do not resulting in more reference counting updates.
+              There are several differences between tracing and reference counting collectors but as further optimization is performed on these collectors, 
+	    the algorithmic performance of the collectors start to become very similar. To start, reference counting is incremental because it updates counts on
+	    each pointer write. Tracing in comparison counts by scanning the entire heap of pointer writes in one go. Reference counting being incremental means 
+	    that reference counting collectors have very short internal pause time as it constantly updates on each pointer write which makes it good for fast 
+	    real time applications. Tracing collectors in turn takes in a lot of data which results in delayed collection and long pause time but it is also able to
+	    output large amounts of data too. Additionally, tracing counting collectors ignore pointer mutations while reference counting collectors do not resulting 
+	    in more reference counting updates.
 	         
-              As discussed, both collectors are basically opposites of each other in how they operate but optimization implementations makes them appear more closely alike in performance. 
-            For example in reference counting collectors the short incremental updates is considered an advantage but in high performance applications it can be costly. 
-            Thus in one optimization scheme some reference counting is deferred, meaning it is “paused” and placed in the “back”. 
-            These deferred reference counts aren’t used until it is scanned. This operates very similarly to tracing collectors with a long pause time and delayed collection. 
-            In the case of tracing counting collectors, one optimization scheme involves rectifying the collector’s disadvantage of delayed collection and long pause time. 
-            This is called generational collection and how it solves the tracing collector’s disadvantage is by introducing some reference counting features, like shortening the time of collection and quickening update counts.
-            The quicker collection time also introduces mutation overhead, something that tracing collectors ignore but with generational collection it can’t be ignored much like the reference counting collector.
+              As discussed, both collectors are basically opposites of each other in how they operate but optimization implementations makes them appear more closely 
+	    alike in performance. For example in reference counting collectors the short incremental updates is considered an advantage but in high performance 
+	    applications it can be costly. Thus in one optimization scheme some reference counting is deferred, meaning it is “paused” and placed in the “back”. 
+            These deferred reference counts aren’t used until it is scanned. This operates very similarly to tracing collectors with a long pause time and delayed 
+	    collection. In the case of tracing counting collectors, one optimization scheme involves rectifying the collector’s disadvantage of delayed collection 
+	    and long pause time.  This is called generational collection and how it solves the tracing collector’s disadvantage is by introducing some reference 
+	    counting features, like shortening the time of collection and quickening update counts.The quicker collection time also introduces mutation overhead, 
+	    something that tracing collectors ignore but with generational collection it can’t be ignored much like the reference counting collector.
 
         </pre>
         <div> Section 3: The Algorithmic Duels - Chris </div>
         <pre>
            
                 To see the similarities between tracing and reference counting algorithms, we have to look at the two algorithms differently. 
-            We have to see the version of reference counting where operations are performed at collection time where the operations are grouped instead of being ran immediately. 
-            We also have to use a version of tracing where the tracing process reconstructs the actual reference count of each object instead of simply setting a mark bit. 
-            The first similarity we notice is that both algorithms start and travel forward at the roots, the tracing at the roots and the reference counting starting at the anti-roots. 
-            Tracing only looks at the live objects to collect while reference counting looks at dead objects. Thus, tracing operates on “matter” and reference counting operates on “anti-matter”. 
-            One difference is that tracing sets the object reference counts to zero, and increments it  until they reach the true reference count while reference counting starts at a value more than the true reference count and decrements it until it also reaches the true reference count.
+            We have to see the version of reference counting where operations are performed at collection time where the operations are grouped instead of being 
+	    ran immediately.  We also have to use a version of tracing where the tracing process reconstructs the actual reference count of each object instead of 
+	    simply setting a mark bit. The first similarity we notice is that both algorithms start and travel forward at the roots, the tracing at the roots and the 
+	    reference counting starting at the anti-roots. Tracing only looks at the live objects to collect while reference counting looks at dead objects. 
+	    Thus, tracing operates on “matter” and reference counting operates on “anti-matter”.  One difference is that tracing sets the object reference counts 
+	    to zero, and increments it  until they reach the true reference count while reference counting starts at a value more than the true reference count and 
+	    decrements it until it also reaches the true reference count.
             
-	             In this paper, we assume that all memory is made up of fixed-sized objects and ignore fragmentation. Both algorithms start out the same as they both deal with garbage collection. 
-            It can be expressed as a fixed-point computation. A fix-point is computed for the assignment of reference counts to the vertices.  
-            Reference counts also include root set R and incoming edges from vertices with non-zero reference counts. Once the reference counts have been assigned, vertices with a reference count of 0 are reclaimed. 
-            So, any object that is not being referenced by anything will be collected. 
+	             In this paper, we assume that all memory is made up of fixed-sized objects and ignore fragmentation. Both algorithms start out the same as they 
+	    both deal with garbage collection. It can be expressed as a fixed-point computation. A fix-point is computed for the assignment of reference counts 
+	    to the vertices.  Reference counts also include root set R and incoming edges from vertices with non-zero reference counts. Once the reference counts 
+	    have been assigned, vertices with a reference count of 0 are reclaimed.  So, any object that is not being referenced by anything will be collected. 
 	
-                For the tracing algorithm, the reference counts of all vertices are zero because they were created by new() or because their reference count was reset to zero during the previous sweep-for-tracing(). 
-            Sweep-for-tracing() remakes the reference count of each vertex.  It scans forward from each element of the work-list, incrementing the reference counts of vertices that it encounters.
-            Finally, the sweep-for-tracing() function is called  to return the unused vertices to free storage to be collected.  
-            For reference counting, the algorithm then scans forward from each element of the work-list, decrementing the reference counts of vertices that it encounters. 
-            Then, the sweep-for-counting() function is invoked to return the unused vertices to free storage. 
-            Both algorithms use the same scan function, except that the reference count is incremented in tracing  and the reference count decrements in reference counting.
+                For the tracing algorithm, the reference counts of all vertices are zero because they were created by new() or because their reference count was 
+	    reset to zero during the previous sweep-for-tracing(). Sweep-for-tracing() remakes the reference count of each vertex.It scans forward from each 
+	    element of the work-list, incrementing the reference counts of vertices that it encounters.Finally, the sweep-for-tracing() function is called
+	    to return the unused vertices to free storage to be collected. For reference counting, the algorithm then scans forward from each element 
+	    of the work-list, decrementing the reference counts of vertices that it encounters. Then, the sweep-for-counting() function is invoked to return 
+	    the unused vertices to free storage. Both algorithms use the same scan function, except that the reference count is incremented in tracing
+	    and the reference count decrements in reference counting.
 
 
             
@@ -84,10 +92,11 @@
            Storage concerns and proper assignments are where the fundamental differences emerge, and the trade-offs occur within implementation details. 
            Deferred Reference Counting is a method that tallies object references through some form of object tracing. 
            In contrast, partial tracing attempts to combine the previous methods, but fails in implementation. 
-           Why? When implemented it ends up being a worst of both worlds scenario, especially in run time systems. Generational collectors are a bit different, they split the heap into nursery, mature space, and roots. 
-           The ability to move from the nursery to the mature space is an important point. It allows us to increase throughput and take care of some of the bottleneck issues that could arise. 
-           It is important to note that the roots are both part of the nursery and the mature space, and that we have a dedicated function to perform the tracing scans and node moves. 
-           The bridge between the nursery and mature space is known as the macro-edge, and it is analogous to a reference counter. 
+           Why? When implemented it ends up being a worst of both worlds scenario, especially in run time systems. Generational collectors are a bit different, 
+	   they split the heap into nursery, mature space, and roots. The ability to move from the nursery to the mature space is an important point. 
+	   It allows us to increase throughput and take care of some of the bottleneck issues that could arise. 
+           It is important to note that the roots are both part of the nursery and the mature space, and that we have a dedicated function to perform 
+	   the tracing scans and node moves.  The bridge between the nursery and mature space is known as the macro-edge, and it is analogous to a reference counter. 
            Collection is dependent on all of these aspects working properly, from the correct counts, to the right movement between the nursery and mature space.
 
 
