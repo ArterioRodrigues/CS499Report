@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/index.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog 4</title>
+</head>
+<body>
+    
+    <ul>
+        <li class="active"><a href="index.html">Home</a></li>
+        <li class= "active"><a href="blog1.html">Blog 1</a></li>
+        <li class= "active"><a href="blog2.html">Blog 2</a></li>
+        <li class= "active"><a href="blog3.html">Blog 3</a></li>
+        <li class= "active"><a href="blog4.html">Blog 4</a></li>
+        <li class= "active"><a href="blog5.html">Blog 5</a></li>
+      
+    </ul>
+    <div class = "top">
+        <img src="" alt="">
+        <h1 class="">Blog 5: A Protocol for Packet Network Intercommunication
+        </h1>
+            
+        </pre>
+        <div>Pages 4-6: Christopher Wu</div>
+        <pre class="tab1">
+              For process level communication, there has to be a transmission control program, also called TCP, to handle the transmission and the acceptance 
+             of messages. The TCP breaks up the messages into the maximum length of 8-bytes to reduce strain on the system. One of the biggest tasks the TCP 
+             performs is the multiplexing and demultiplexing of segments. Multiplexing is when the TCP takes segments from different sources and creates packets 
+             to send. The TCP must be able to reconstruct and deliver messages to the proper destination processes. 
+             
+              One of the problems that comes up is how does the TCP take these messages and convert them into segments that are sent into the right places. 
+             There are two different cases that arises. The first case is that the position of the segments are ignored and that the byte stream is formed into
+             segments that are sent to the same TCP. This increases efficiency and all the information is contained in one packet header. However, the reconstruction 
+             into the packets needs to be exact or it will not be correct.The second case is to take the position the different segments are coming into the TCP in 
+             as their destination. This requires every packet to have a process header. The second cases takes into account  potential interprocess interference.
+             
+              Having address ports be different sizes and formats would be a problem if the TCP is not built to handle that. This problem arises when there is 
+             communication between different networks and ports. A port is a designator of a message stream associated with a process. Having a standard port and 
+             addresses will solve the issue. Every packet passes through a gateway which determines the destination network ID to determine how to route the packet.
+
+
+        </pre>
+        <div> Pages 7-9 Retransmission/Flow Control: Terry Phung </div>
+        <pre>
+           
+                It is important to note that transmissions are not always 100% reliable and sometimes the transmission needs to be retried for it to connect. 
+               The case in which this happens is when the TCP sender has packet loss when it tries to connect with receivers. To know when to retry the transmission,
+               the TCP sender waits for a reply/acknowledgement from the receiver and if it does not get any, it does a retransmission. Retransmission allows for a 
+               way for TCPs to recover from network failures and to deal with the occasional overdemand of the network. A retransmission policy also needs a method 
+               in which the receiver is able to detect duplicate retransmissions and to tell the difference between new transmissions and retransmissions. 
+               This is done through manipulating and ensuring unique sequences are passed through so that each new transmission is identifiably unique while 
+               making it easy to detect duplicate transmissions.
+
+                Besides the possibility of unreliable transmissions, TCP can also have the problem of the sender and receiver performing differently. 
+              For example, a TCP sender sends about 20 messages a second but the TCP receiver is only able to receive about 10 messages a second. 
+              Since the TCP receiver is not able to fully take in the messages that’s being sent, it starts to queue up the sent messages. If the sender 
+              does not stop sending messages though, eventually the receiver queue starts to become full and starts to “drop” the sent messages because 
+              the receiver is way too overloaded. This is obviously an issue as dropped messages are permanently lost so there has to be a way to equalize 
+              the performance of the sender and receiver. The TCP flow control is the solution to this problem, as it is able to control the flow of messages 
+              from the sender to equalize the speed with the receiver. TCP flow control uses the principles of retransmission to achieve this. The TCP sender
+              waits for acknowledgement from the receiver and if it does not receive it, it means the receiver is too slow to receive the messages, so the sender
+              modifies their speed to be equal to that of the receiver. 
+
+
+
+            
+        </pre>
+        <div>Page 10-13 Karnendra Verma</div>
+        <pre>
+            
+             The creation of the internet , as it is known today, stems from philosophies of connectedness. Specifically, that connection is simply an interaction 
+             or any association betweens two entities. One of the inspirations for the system were telephone systems, but these required manual address switching. 
+             The adaptation to static switches was the implementation of interface message processors, which allowed connections to be open and accessible without
+             the downsides. Today we call the device a router, and they have become ubiquitous in information exchange and networks. The main reason we have the 
+             modern day internet is due to ARPANET and the desire to transfer information between intelligence agencies and national security.  
+
+
+        </pre>
+    </div>
+</body>
+</html>
