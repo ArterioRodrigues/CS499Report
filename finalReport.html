@@ -1,1 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/index.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog 4</title>
+</head>
+<body>
+    
+    <ul>
+        <li class="active"><a href="index.html">Home</a></li>
+        <li class= "active"><a href="blog1.html">Blog 1</a></li>
+        <li class= "active"><a href="blog2.html">Blog 2</a></li>
+        <li class= "active"><a href="blog3.html">Blog 3</a></li>
+        <li class= "active"><a href="blog4.html">Blog 4</a></li>
+        <li class= "active"><a href="blog5.html">Blog 5</a></li>
+        <li class= "active"><a href="finalReport.html">Final Report</a></li>
+      
+    </ul>
+    <div class = "top">
+        <img src="" alt="">
+        <h1 class=""> Group 2: Algorithmic Recommendation System (Workout/exercises)
+        </h1>   
+        </pre>
+        <div>Arterio Rodrigues</div>
+        <pre class="tab1">
+              After a discussion with the other group members, I was given the role of designing the front end.  I was in charge of designing the layout 
+             and the overall look of the webpage. The front was design to communicate with the back end and used the data stored there to make the webpage.
+             React was chosen as the platform to host the front end because it one of the most popular and widely used for frontend development. 
+             React provides a workflow to create components and pages that can all interact, and pass values called props and it also provides a variety 
+             of libraries to use for our project. The responsibility of the front end also incorporated learning and using CSS to make the website “pretty”.
+             CSS is a programing language used in tandem with html file to edit their component look, operation, and placement.
+             
+                The first thing I create was a QUIZ component using the react built in props variables to my advantage. The QUIZ component gets an array of 
+              question form the backend and parses to create a display of option on the webpage. It stores the answers form the user and send it back to 
+              the backend for the algorithm to create curated list of workouts for the user. This was the first test for react. I went on to create other 
+              components such as the search, analytics, navbar, and suggestion components. Each provided a unique challenge to create for example the 
+              navbar need a pop-up feature to show the pages that the website can display. I had to learn how to dynamically render components. 
+              Some challenge I face was data transfer between components and page, design (using CSS wasn’t as easy as first taught), dynamic changes of 
+              components for example the search as a drop menu.  Pages where next on the agenda, as a website needs webpages, we create at first an 
+              overview and workout page. This was later changed to Login, Profile, Recommendations and Register page. Display data was one of the hardest 
+              tasks because it was sent at a string to the front end, so I had to create a way to parse and neatly display the output for this I made the
+              suggestion component.
+              
+                After creating components, we want to use my next task was using CSS to style the webpage. At this point the website looked like it was 
+              created in the 90s, design and “prettiness” plays a big role in user experience, so I focused on making everything look associated and 
+              pretty. I created a CSS file for all components and pages to individually style each.  To accomplish this, I had to learn about each element 
+              and what attributes they have and how to changes them and what it affects. 
 
+
+
+        </pre>
+        <div> Terry Phung </div>
+        <pre>
+           
+                  At the start of the project me and my other group members drew up drafts of what our project would look like and what features would be in 
+                it. Once the idea was finalized I was given the role of setting up the backend and my job was to make a server for the group to work with. 
+                We chose to use Express, a web application framework based on Nodejs. This uses the javascript language and since we’re going to use React,
+                a front end javascript library, Express is perfect to make the back end server with. To start, I need to first set up express by creating a
+                port and some lines of code that lets me start a local server with the specified port. Once that is done I need to make several API calls 
+                so that the front end can communicate with the backend and vice versa.    
+                
+                  The crux of the project is developing an algorithm that recommends users workouts based on their choices. Thus the front end needs to 
+                communicate to the backend the choices of the user so the algorithm can be put to work. To make this happen I need to connect the algorithm,
+                written in python, to the backend express server. Fortunately it was simple to call the python file containing the algorithm within the 
+                express server file. The next step was to make an API that sends the front end data containing a test case of user choices to the server. 
+                I created the test case choices in a basic front end React web app and made the request to the server. The API I made worked as the request
+                made it into the server and the algorithm was able to use the front end request containing the test choices to make a list of recommendation
+                s. I also made it so that once the algorithm made the list of user based recommendations, the API will send that list to the front end so 
+                that it will be displayed to the user.
+                
+                  The next task I needed to complete was to connect the server with the database. The database we chose to use is pgadmin which is based on 
+                postgreSQL. Express does have a tool that allows one to do postgreSQL queries within the back end and connect with pgadmin. So first I 
+                needed to set up pgadmin and make a test table with dummy data. Once that is done I need to make sure I’m able to connect to the database
+                by making a query request within the server that should make its way to the database. The outcome of the request is that the database would
+                be able to recognize the query from the server and then do the query. In this test the query statement is simply a select * which gets all 
+                the rows of a specific table. The database will then send the results to the server which is displayed in the server’s console logs. 
+                Additionally to further test the connection with the database I made an API call that is able to take frontend data to the server which is
+                then saved to the database through an insert query statement in the server. 
+
+                  After connecting the database with the server and connecting the frontend to the backend there were no new features to make for the 
+                 server beyond editing API calls for changes made by my other group members. My contribution then shifted to more of a support role where
+                 I tested out the changes and code made to the project by my group members. I also begin to take up some frontend tasks, like for example 
+                 creating a login and registration system for the project. The login system is able to authenticate the user through the server checking 
+                 if it matches with data from the database. The registration system is able to save the inputted data into the database through the
+                 server that is based on the API calls that I made.
+
+
+
+            
+        </pre>
+        <div>Christopher Wu</div>
+        <pre>
+          My main area of focus was writing the algorithm to generate the recommendations of exercises taken from the backend or given by the user. 
+        I was the only person to work on the algorithm. First, I had to research popular recommendation systems and different tutorials to see 
+        how they did make theirs. The general consciousness for a system that looked easy to use was using TF-IDF values for the different exercises. 
+        I then had to do more research into TF-IDF values and how to implement it. It was not useful to get TF-IDF values for exercise names, so Karnendra 
+        and I worked together to create a database of exercises with different attributes. I chose to use python as the language to write the algorithms 
+        in because I was familiar with the language and it had a TF-IDF vectorizer library I can use. 
+        
+	        I first started to write in a python file not connected to any backend or frontend, I just had a csv file of the exercises. One of the constraints
+        we found was that the algorithm created an n’th degree array. Our exercise table contains 77 exercises, the algorithm would create a 77 x 77 table
+        every time it ran. I ran the algorithm on some sample data with hundreds of entries and it crashed my computer, so we had to have a limit of how 
+        many exercises to have, but also have a variety of exercises to choose from. Another problem that came up was the difference of the results from 
+        the  TF-IDF vectorizer and the results I wanted to have. It did not do what I wanted it to do when it came to categorical data, so I had to create
+        functions that mimicked what the vectorize did. The function checked what the set values were given as parameters and returned a double value from 
+        0 to 1.0 based on the weight I gave it. 
+        
+	      I also had to research and come up with different ways of just sending out the exercises based on user input. We then had a meeting to discuss how
+        to utilize our base algorithm in different ways and provide more user feedback. Karnendra and I brought up the idea of giving users the chance to
+        rate the workouts they’ve done and use that to give variety to the recommendations. We also came up with the idea to have templates of certain 
+        types of workouts to give more structure to the recommendations. Having a seemingly random assortment of workouts would overwhelm new users, so we
+        created templates based on different days of the week. 
+        
+	      The templates required a different algorithm that built on top of the basic one. I created an algorithm that made up a dummy exercise to be put 
+        into the exercise table and use different preferences taken from the template and user preferences. The output of the algorithm gave different 
+        exercises for each exercise for the day, but there were multiple exercises to choose from instead of having one exercise that the user might not 
+        like. 
+        
+	        I was also the primary problem solver and organizer of the project. I helped out in different areas, such as the backend, the frontend, and the 
+        integration of everything. For the backend, I cleaned up the data and added some more tables, such as the exercises the users have done and the 
+        table of users and their preferences. I also created most of the api calls and the queries that connected the backend to the front end. 
+        Terry worked on it with me on some parts and cleaned up my work, but I wrote most of the calls and routes. I helped to create the overall 
+        structure of the frontend with Terry. 
+        
+	        One of the problems that came up was trying to help in other parts of the project while still focusing on the algorithms. Towards the end of the 
+        project, the different components were at different stages, so I had to help get everything up to speed and I did not have time to keep improving
+        the algorithms. This also created bottlenecks that stopped algorithm development.    
+             
+        </pre>
+  <div>Karnendra Verma</div>
+        <pre>
+        My contributions to the project had to do with the planning, research, and the database portion of the backend. During the planning phase of the
+        project, approximately the first month, our group had different directions we wanted to go in. For example one member wanted an automated system 
+        for drone charging, another member wanted a website/webapp component, and another wanted a game or blockchain. We ended up using a workout 
+        recommender system. 
+        
+        The research I did revolved around how recommender systems worked generally, scientific approaches to programming workouts, and into database 
+        design principles. This was the first time I worked on database, program design, or designing an app as a group. I worked on what data points 
+        would be utilized by the algorithm, and the workout database itself. The workout database was built from the ground up, each row describing 
+        attributes of a specific exercise.  This was difficult in the sense that there is no open source database of workouts that broke down each aspect 
+        of a workout. I designed the database for the algorithm to utilize/consume the attributes and then suggest similar movements. The algorithm that 
+        we chose would take these attributes, combine them with user constraints/demands and personalize exercises. Further I had to do research on which
+        anatomy and physiology was used by each movement. 
+        
+        One of the problems I encountered with the exercise database was that it took time to make. The reason being that each movement had to be 
+        researched individually, categorized by attributes, and then I had to decide what variations would be made. For example a movement's attributes 
+        could consist of the muscles used, directionality of force vectors, what the movement's utility was, and the equipment type. 
+        
+        The next step was creating the portion of the database that would hold user data and the workouts themselves. At this time we knew that the user 
+        would have to have their information, quiz results, and then workout information stored, and accessed. A problem I encountered was that the 
+        algorithm was doing a text based evaluation and recommendation at the time. This was fine for me exercises that have similar names (front squat vs
+        a back squat). But the algorithm could not choose a repetition or set scheme for the user. This was pretty complicated for an algorithm to 
+        recommend as well. The best way I figured was to have preset templates, where the algorithm would suggest an exercise, but the rep and set scheme
+        would directly correlate with the test results of the user. This created a bit of a miscommunication with Chris, where it seemed like suggesting
+        that we have preset exercises. I also didn’t fully understand how the algorithm worked. We ended up towards the end, realizing that we had to have
+        the different attributes utilized to make a recommendation, and so I decided templates would have to reflect this. 
+        
+        Each template has static rep ranges but variable movement patterns based on the programming research. We join them depending on user results, 
+        and then the algorithm fills the recommended portion. The user makes the choice of the movement after the recommender. This then goes to the 
+        backend. I also created the server in Postgres and wrote the tables in Postgres. The schemas and database normalizations were done with the help 
+        of Professor Al-dhaheri.
+        </pre>
+        
+        <a href="https://github.com/ChristopherWu1/499middleware" target="_blank"> Github link for frontend and middlware</a>
+        <a href="https://github.com/ChristopherWu1/499data" target="_blank"> Github link for backend</a>
+        
+         <div>Test cases</div>
+        <pre>
+        to login. if it is mispelled, it will not log you in.
+        Username:bruh
+        password:phone
+        
+        Username:coolbeans
+        password:password
+        
+        For testing of basic algorithm. Use these exercises. Feel free to use any weights and perferences. 
+        if the exercises is mispelled, then the algorithm will not work properly.
+        
+        Deadlift
+        Bench Press
+        Running
+        Side Bent Stretch
+        </pre>
+  
+  
+    </div>
+</body>
+</html>
